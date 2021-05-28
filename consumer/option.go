@@ -106,6 +106,7 @@ type consumerOptions struct {
 	RebalanceLockInterval time.Duration
 
 	Resolver primitive.NsResolver
+	LogLevel  string
 }
 
 func defaultPushConsumerOptions() consumerOptions {
@@ -132,6 +133,12 @@ func defaultPullConsumerOptions() consumerOptions {
 	}
 	opts.ClientOptions.GroupName = "DEFAULT_CONSUMER"
 	return opts
+}
+
+func WithLoglevel(level string) Option {
+	return func(options *consumerOptions) {
+		options.LogLevel =level
+	}
 }
 
 func WithConsumerModel(m MessageModel) Option {

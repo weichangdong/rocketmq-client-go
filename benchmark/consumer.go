@@ -21,15 +21,16 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"github.com/apache/rocketmq-client-go/v2"
-	"github.com/apache/rocketmq-client-go/v2/consumer"
-	"github.com/apache/rocketmq-client-go/v2/primitive"
 	"os"
 	"os/signal"
 	"sync"
 	"sync/atomic"
 	"syscall"
 	"time"
+
+	"github.com/apache/rocketmq-client-go/v2"
+	"github.com/apache/rocketmq-client-go/v2/consumer"
+	"github.com/apache/rocketmq-client-go/v2/primitive"
 )
 
 type statiBenchmarkConsumerSnapshot struct {
@@ -131,6 +132,7 @@ func (bc *consumerBenchmark) consumeMsg(stati *statiBenchmarkConsumerSnapshot, e
 	c, err := rocketmq.NewPushConsumer(
 		consumer.WithGroupName(bc.groupID),
 		consumer.WithNameServer([]string{bc.nameSrv}),
+		consumer.WithLoglevel("debug"),
 	)
 	if err != nil {
 		panic("new push consumer error:" + err.Error())

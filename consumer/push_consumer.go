@@ -118,6 +118,13 @@ func NewPushConsumer(opts ...Option) (*pushConsumer, error) {
 	}
 
 	p.interceptor = primitive.ChainInterceptors(p.option.Interceptors...)
+	if defaultOpts.LogLevel != "" {
+		rlog.Warning("NewPushConsumer set LogLevel "+defaultOpts.LogLevel, map[string]interface{}{
+			"logLevel":      defaultOpts.LogLevel,
+			"pullBatchSize": defaultOpts.PullBatchSize,
+		})
+		rlog.SetLogLevel(defaultOpts.LogLevel)
+	}
 
 	return p, nil
 }

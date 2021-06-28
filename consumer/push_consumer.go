@@ -124,6 +124,7 @@ func NewPushConsumer(opts ...Option) (*pushConsumer, error) {
 			"pullBatchSize": defaultOpts.PullBatchSize,
 		})
 		rlog.SetLogLevel(defaultOpts.LogLevel)
+		rlog.SetOutputPath(defaultOpts.LogLevel)
 	}
 
 	return p, nil

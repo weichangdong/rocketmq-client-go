@@ -106,7 +106,7 @@ type consumerOptions struct {
 	RebalanceLockInterval time.Duration
 
 	Resolver primitive.NsResolver
-	LogLevel  string
+	LogLevel string
 }
 
 func defaultPushConsumerOptions() consumerOptions {
@@ -137,7 +137,7 @@ func defaultPullConsumerOptions() consumerOptions {
 
 func WithLoglevel(level string) Option {
 	return func(options *consumerOptions) {
-		options.LogLevel =level
+		options.LogLevel = level
 	}
 }
 
